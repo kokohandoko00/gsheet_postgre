@@ -7,7 +7,7 @@ credentials = service_account.Credentials.from_service_account_file("gsheetpostg
 client = gspread.Client(auth=credentials)
 
 # Access Google Sheets data
-sheet = client.open("Daftar Lamaran Kerja").sheet1
+sheet = client.open("University Partnership").sheet1
 data = sheet.get_all_records()
 
 # Print the retrieved data
