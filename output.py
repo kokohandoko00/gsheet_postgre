@@ -10,7 +10,7 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 # Execute a SELECT query
-cursor.execute("SELECT company, job_description, qualification FROM job_opportunities")
+cursor.execute("SELECT * FROM uni_partner")
 rows = cursor.fetchall()
 
 # Use PrettyPrinter to format the output
