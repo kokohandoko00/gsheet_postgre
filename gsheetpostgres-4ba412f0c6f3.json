@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "gsheetpostgres",
+  "private_key_id": "4ba412f0c6f36cefbd88ccb14905a320d8731a3c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCvE2xy89gA6sj0\nC6liCcC9BLq7CYEY89QpHZQOr9ElGQy+D1aLkO1x6FTuiFi8OkYg8llOkHs+S16f\nX1dGbB8pzPzd7nXJMLrFRVjZY886YK7YmjIy5dRq2t3RPSKT5jJUIbixMZDvYkW3\nW4lK4EhLNQEourrHeF8HxqEDKp95WsluuIkCTxU31mBnKSePoFADXaCCw3L7aamJ\ndQHxt9jrhGzUSlWn3LycWifyYLY6/CjiD2eQ4O0kSv5tmMLS2JRfcvQBNZzmQc1g\n/uNlQLh0kGiB8o6E/ues2I8cUdGVgqHip48V8ICrKz1jLzEdWgUS/pWYkclxKXui\n+FmyQYgFAgMBAAECggEAAqj5JBr73HG0yW527aAnz0dn3ekkTsB/p/tE0V9O/nEN\nvkKF5lt2nB0zUyd7r6pz/9Km1DiCQt1KzAGbFh0U8SHl8qpJnFuy7sXhtnXbg2/O\nIEjhe9/9lP0L0z7KTHR6LciQYZLW+Kgl1oYbxSk4t/nPcXK63UaBLSFRt3ZZk3Ks\n/LH2Z/ajCjCArZFnwmlItLFQuTrPTDXho4Fy2RFrmUinx6bHYNLyttYcV/S0yYtP\ni6oQpEyTtPSt7mabJCmwu6UyRJCsO5404isWlxIIJqCU288E+Y/VfdRVipGLZ7I+\nGy63la6NrG2IwZx81Vb+ZGeurL4NuhcnHe84mlnrwQKBgQDgMn5dyWMTebcWlB//\ndEgE7zPmfrz0k0Ss1z44XRbRoOpz7NcvQ9wTsdsqGt4w+Mf5D3enX0qoxOzGW0U9\nXxWB4jeCtQCpjd5zyCYhG4OBTDn7H0ua69gloeiSjCSK3pnxmpbX+3wnHXgNy03q\n+qwW6fq2r/8jBzZcAM32r9UaxQKBgQDH6SKN9wfmiRYAukTpKpEEMQQl+6lKZ5WR\ndAoXSFUDxKe12kI6/vIPW8pWdRhHXQt6lCe1TVxrcTNxMJbeZsIBoKo1IpK2d9VO\nUTB9WK70Rcd8xl8Fcf5x6pauHFWlhQ8su81qtWGu+jQy9lzzI482XXFfJx2+vIHi\nnaTRSJqMQQKBgQDC2V+WJzbicEA9cVM181u8XiBfTPrwHSXsic1bsxvn6NCbG9YR\nEAsvWr49o8hEC5PQ1C6L2nfKoguegSh2JDNPBMp14NXIhrI1MlhhIcZzE0q5BAPz\nitH6MvMsmnwP7VMh9dbvs3O9kxEJ/A2mEWKLL6NkLyWwzc3ivBhFM6AkeQKBgQCt\n416JOi2HHAsliuDSKJKHoNNI7sTs0XlKUjNM2UAJzQ9MoZMmmgiXz3ILDkOWH5sS\nfrijfa08T/U9KdSxk5SBse0b1vzi9w112C1jeraECAZjxHF23RdEo5d5z2+4UCtI\n7/rYLPnRKBYrlhx36aBy24j4CaBX/sTEB/gLiynTgQKBgDQQY1XjUm6p+UTP4l1H\nIGXFBZVdvnudWN1mEjjgGndH4LsuJkHfdyZh1AVQlDXEux1dcnoznTJ5GQoH41gr\nlcmeSK4R2akBfB9rMQYvyddNd5Bdn9WRcRDnd3eqdO2+CI25onLP6DFtiv0mXT29\nKUdoFIc+hDCsiF8xRwLKW+AO\n-----END PRIVATE KEY-----\n",
+  "client_email": "connecting-gsheet-into-postgre@gsheetpostgres.iam.gserviceaccount.com",
+  "client_id": "105785693895945161190",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/connecting-gsheet-into-postgre%40gsheetpostgres.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
