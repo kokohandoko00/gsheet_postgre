@@ -4,6 +4,7 @@ import gspread
 from google.auth import exceptions
 from google.oauth2 import service_account
 import psycopg2
+from psycopg2 import extras
 import time
 
 # Fungsi untuk mengonversi data yang kosong menjadi berisi None
@@ -42,28 +43,43 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-# Memasukkan data ke Postgresql
-for record in converted_data:
-    cursor.execute(
-        "INSERT INTO uni_partner (No, country, partner_university, faculty_subject, program_type, study_program, start_month, start_year, finish_month, finish_year, status, document_type, file_link, level, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (
-            record["No"],
-            record["Country"],
-            record["Partner University"],
-            record["Faculty/Subject"],
-            record["Program Type (Exchange/DD/Other)"],
-            record["Study Program"],
-            record["Start Month"],
-            record["Start Year"],
-            record["Finish Month"],
-            record["Finish Year"],
-            record["Status (active/inactive/expired)"],
-            record["Document Type"],
-            record["File"],
-            record["Level"],
-            record["Notes"]
-        )
+# Prepare the data for batch insertion
+batch_data = [
+    (
+        record["No"],
+        record["Country"],
+        record["Partner University"],
+        record["Faculty/Subject"],
+        record["Program Type (Exchange/DD/Other)"],
+        record["Study Program"],
+        record["Start Month"],
+        record["Start Year"],
+        record["Finish Month"],
+        record["Finish Year"],
+        record["Status (active/inactive/expired)"],
+        record["Document Type"],
+        record["File"],
+        record["Level"],
+        record["Notes"]
     )
+    for record in converted_data
+]
+
+# Define the SQL query for batch insertion
+insert_query = """
+    INSERT INTO uni_partner (
+        No, country, partner_university, faculty_subject, program_type,
+        study_program, start_month, start_year, finish_month,
+        finish_year, status, document_type, file_link, level, notes
+    )
+    VALUES %s
+"""
+
+# Set the page_size to match the number of rows you have (82)
+page_size = 82
+
+# Execute the batch insertion
+extras.execute_values(cursor, insert_query, batch_data, template=None, page_size=page_size)
 
 
 # Record the end time

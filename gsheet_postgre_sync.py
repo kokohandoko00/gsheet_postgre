@@ -5,6 +5,7 @@
 import gspread
 from google.oauth2 import service_account
 import psycopg2
+from psycopg2 import extras 
 
 # Membuat fungsi untuk menghubungkan service ke PostgreSQL
 def connect():
@@ -80,32 +81,49 @@ def main():
         if last_synced_row_id is None or record["No"] > last_synced_row_id:
             new_data.append(record)
 
-    # Menghubungkan Koneksi ke Postgresql
+ # Menghubungkan Koneksi ke Postgresql
     conn = connect()
     cursor = conn.cursor()
 
-   # Memasukkan data ke Postgresql
-    for record in new_data:
-        cursor.execute(
-            "INSERT INTO uni_partner (country, partner_university, faculty_subject, program_type, study_program, start_month, start_year, finish_month, finish_year, status, document_type, file_link, level, notes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (
-                record["Country"],
-                record["Partner University"],
-                record["Faculty/Subject"],
-                record["Program Type (Exchange/DD/Other)"],
-                record["Study Program"],
-                record["Start Month"],
-                record["Start Year"],
-                record["Finish Month"],
-                record["Finish Year"],
-                record["Status (active/inactive/expired)"],
-                record["Document Type"],
-                record["File"],
-                record["Level"],
-                record["Notes"]
-            )
+    # Prepare the data for batch insertion
+    batch_data = [
+        (
+            record["Country"],
+            record["Partner University"],
+            record["Faculty/Subject"],
+            record["Program Type (Exchange/DD/Other)"],
+            record["Study Program"],
+            record["Start Month"],
+            record["Start Year"],
+            record["Finish Month"],
+            record["Finish Year"],
+            record["Status (active/inactive/expired)"],
+            record["Document Type"],
+            record["File"],
+            record["Level"],
+            record["Notes"]
         )
-        update_last_synced_row_id(record["No"])  # Melakukan update tabel setelah inserting
+        for record in new_data
+    ]
+
+    # Define the SQL query for batch insertion
+    insert_query = """
+        INSERT INTO uni_partner (
+            country, partner_university, faculty_subject, program_type,
+            study_program, start_month, start_year, finish_month,
+            finish_year, status, document_type, file_link, level, notes
+        )
+        VALUES %s
+    """
+
+    # Execute the batch insertion
+    extras.execute_values(cursor, insert_query, batch_data, template=None, page_size=len(new_data))
+
+    # Update last_synced_row_id for the last inserted record
+    if new_data:
+        last_inserted_row_id = new_data[-1]["No"]
+        update_last_synced_row_id(last_inserted_row_id)
+
         conn.commit()
 
     cursor.close()
